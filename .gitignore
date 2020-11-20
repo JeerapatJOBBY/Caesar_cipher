@@ -5,7 +5,6 @@
 
 #Arduino Pro IDE
 *.hex
-*.elf
 
 # User-specific files
 *.rsuser
