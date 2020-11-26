@@ -6,7 +6,7 @@
 
 Adafruit_SSD1306 oled = Adafruit_SSD1306(128, 32, &Wire);    //ประกาศสร้าง oject ที่ใช้ลองรับชื่อของอุปกรณ์
 
-int Number = 0;  
+long Number = 0;  
 long second = 0;
 double total = 0;
 int time = 0 , Done = 0 , show = 0 ,Key = 0 , Encryption = 0 , Decryption = 0 ,numberic = 0;
@@ -98,7 +98,8 @@ void loop()
         oled.setCursor(0, 0);        //กำหนดตำตำแหน่ง curcor (แกน x, แกน y)
         oled.setTextColor(SSD1306_WHITE);         //กำหนดสีของตัวหนังสือ  (มีแค่สีขาว)
         oled.setTextSize(1);
-        oled.println("Last result : \n" + String(result));
+        oled.println("Last result : \n");
+        oled.println(result);
         oled.display(); 
 
         Encryption = ( Number + Key ) % 26;
@@ -125,8 +126,13 @@ void loop()
         oled.setCursor(0, 0);        //กำหนดตำตำแหน่ง curcor (แกน x, แกน y)
         oled.setTextColor(SSD1306_WHITE);         //กำหนดสีของตัวหนังสือ  (มีแค่สีขาว)
         oled.setTextSize(1);
-        oled.println("Encryption : \n" +String(resultEncryption));
+        oled.println("Encryption : \n");
+        oled.println(resultEncryption);
         oled.display();
+        Number = 0;
+        result = "";
+        second = 0;
+        resultEncryption = "";
         break;
 
         case 'D':
@@ -134,9 +140,13 @@ void loop()
         oled.setCursor(0, 0);        //กำหนดตำตำแหน่ง curcor (แกน x, แกน y)
         oled.setTextColor(SSD1306_WHITE);         //กำหนดสีของตัวหนังสือ  (มีแค่สีขาว)
         oled.setTextSize(1);
-        oled.println("Decryption : \n" +String(resultDecryption));
+        oled.println("Decryption : \n");
+        oled.println(resultDecryption);
         oled.display();
-
+        Number = 0;
+        result = "";
+        second = 0;
+        resultDecryption = "";
         break;
 
         case '*':
@@ -149,13 +159,7 @@ void loop()
         oled.setTextSize(1);
         oled.println("Last result : \n " + String(result));
         oled.display();
+        
         break;
-
-      
-
     }
-
-    
-
-    
 }
