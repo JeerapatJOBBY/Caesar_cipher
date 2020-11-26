@@ -6,7 +6,7 @@
 
 Adafruit_SSD1306 oled = Adafruit_SSD1306(128, 32, &Wire);    //ประกาศสร้าง oject ที่ใช้ลองรับชื่อของอุปกรณ์
 
-int first = 0;  
+int Number = 0;  
 long second = 0;
 double total = 0;
 int time = 0 , Done = 0 , show = 0 ,Key = 0 , Encryption = 0 , Decryption = 0 ,numberic = 0;
@@ -49,29 +49,29 @@ void loop()
     switch (customKey) 
     {
         case '0' ... '9':
-        first = first * 10  + (customKey - '0');
+        Number = Number * 10  + (customKey - '0');
         oled.clearDisplay();      //ล้างหน้าจอแสดงผล
         oled.setCursor(0, 0);        //กำหนดตำตำแหน่ง curcor (แกน x, แกน y)
         oled.setTextColor(SSD1306_WHITE);         //กำหนดสีของตัวหนังสือ  (มีแค่สีขาว)
         oled.setTextSize(1);
-        oled.println(first);
+        oled.println(Number);
         oled.display();
         break;
         
         case 'A':
-        Key = first;
+        Key = Number;
         oled.clearDisplay();      //ล้างหน้าจอแสดงผล
         oled.setCursor(0, 0);        //กำหนดตำตำแหน่ง curcor (แกน x, แกน y)
         oled.setTextColor(SSD1306_WHITE);         //กำหนดสีของตัวหนังสือ  (มีแค่สีขาว)
         oled.setTextSize(1);
         oled.println("Key = " + String(Key));
         oled.display();
-        first = 0;
+        Number = 0;
         break;
 
         case 'B' :
 
-        if (first >= 26)
+        if (Number >= 26)
             {
                 oled.clearDisplay();      //ล้างหน้าจอแสดงผล
                 oled.setCursor(0, 0);        //กำหนดตำตำแหน่ง curcor (แกน x, แกน y)
@@ -81,11 +81,11 @@ void loop()
 
                 oled.println("Last result : \n" + String(result));
                 oled.display();
-                first = 0;
+                Number = 0;
                 break;
             }
 
-        show = first;
+        show = Number;
         oled.clearDisplay();      //ล้างหน้าจอแสดงผล
         oled.setCursor(0, 0);        //กำหนดตำตำแหน่ง curcor (แกน x, แกน y)
         oled.setTextColor(SSD1306_WHITE);         //กำหนดสีของตัวหนังสือ  (มีแค่สีขาว)
@@ -98,25 +98,25 @@ void loop()
         oled.setCursor(0, 0);        //กำหนดตำตำแหน่ง curcor (แกน x, แกน y)
         oled.setTextColor(SSD1306_WHITE);         //กำหนดสีของตัวหนังสือ  (มีแค่สีขาว)
         oled.setTextSize(1);
-        oled.println("Last result = \n" + String(result));
+        oled.println("Last result : \n" + String(result));
         oled.display(); 
 
-        Encryption = ( first + Key ) % 26;
+        Encryption = ( Number + Key ) % 26;
         resultEncryption = resultEncryption + alphabet[Encryption];
 
-        if (Key > first) 
+        if (Key > Number) 
         {
-        second = ( first - Key ) % 26;
+        second = ( Number - Key ) % 26;
         Serial.println(second);
         resultDecryption = resultDecryption + alphabet[26+second];
-        first = 0;
+        Number = 0;
         break;
         }
-        if (Key <= first) 
+        if (Key <= Number) 
         {
-        Decryption = ( first - Key ) % 26;
+        Decryption = ( Number - Key ) % 26;
         resultDecryption = resultDecryption + alphabet[Decryption];
-        first = 0;
+        Number = 0;
         break;
         }
        
