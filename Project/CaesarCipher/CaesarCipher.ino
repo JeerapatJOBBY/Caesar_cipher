@@ -8,8 +8,7 @@ Adafruit_SSD1306 oled = Adafruit_SSD1306(128, 32, &Wire);    //ประกา�
 
 long Number = 0;  
 long second = 0;
-double total = 0;
-int time = 0 , Done = 0 , show = 0 ,Key = 0 , Encryption = 0 , Decryption = 0 ,numberic = 0;
+int time = 0 , show = 0 ,Key = 0 , Encryption = 0 , Decryption = 0 ;
 String result ,resultEncryption , resultDecryption; 
 
 
@@ -38,7 +37,7 @@ void setup()
     oled.setCursor(0, 16);        //กำหนดตำตำแหน่ง curcor (แกน x, แกน y)
     oled.setTextColor(SSD1306_WHITE);         //กำหนดสีของตัวหนังสือ  (มีแค่สีขาว)
     oled.setTextSize(1);
-    oled.println("Caesar Cipher Decoder");
+    oled.println("CiphCaesar er Decoder");
     oled.display();
     delay(10);  
 }
